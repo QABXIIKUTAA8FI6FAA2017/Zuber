@@ -1,0 +1,1254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KADIR ON LINE BUSSINES VIP Platform</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #1e88e5;
+      --primary-dark: #1565c0;
+      --primary-light: #64b5f6;
+      --secondary-color: #f8f9fa;
+      --text-color: #333;
+      --light-text: #777;
+      --border-color: #e0e0e0;
+      --success-color: #4caf50;
+      --warning-color: #ff9800;
+      --error-color: #f44336;
+    }
+    
+    /* Color Themes */
+    .theme-blue {
+      --primary-color: #1e88e5;
+      --primary-dark: #1565c0;
+      --primary-light: #64b5f6;
+    }
+    
+    .theme-purple {
+      --primary-color: #9c27b0;
+      --primary-dark: #7b1fa2;
+      --primary-light: #ba68c8;
+    }
+    
+    .theme-green {
+      --primary-color: #2e7d32;
+      --primary-dark: #1b5e20;
+      --primary-light: #4caf50;
+    }
+    
+    .theme-red {
+      --primary-color: #d32f2f;
+      --primary-dark: #b71c1c;
+      --primary-light: #f44336;
+    }
+    
+    .theme-gold {
+      --primary-color: #ffa000;
+      --primary-dark: #ff8f00;
+      --primary-light: #ffc107;
+    }
+    
+    body { 
+      background: var(--secondary-color); 
+      padding-top: 60px; 
+      color: var(--text-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    section { 
+      background: white; 
+      margin: 20px auto; 
+      padding: 25px; 
+      border-radius: 8px; 
+      max-width: 800px; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08); 
+      border: 1px solid var(--border-color);
+    }
+    
+    .vip-card { 
+      padding: 20px; 
+      margin: 15px 0; 
+      border: 1px solid var(--border-color); 
+      border-radius: 8px; 
+      transition: all 0.3s ease; 
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .vip-card:hover { 
+      transform: translateY(-5px); 
+      box-shadow: 0 8px 20px rgba(30, 136, 229, 0.15); 
+      border-color: var(--primary-light);
+    }
+    
+    .vip-badge {
+      position: absolute;
+      top: 10px;
+      right: -30px;
+      background: var(--primary-color);
+      color: white;
+      padding: 5px 30px;
+      transform: rotate(45deg);
+      font-weight: bold;
+      font-size: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .auth-section { display: none; }
+    .logged-in-section { display: none; }
+    
+    .history-item { 
+      padding: 15px; 
+      margin: 10px 0; 
+      border-left: 4px solid var(--primary-color); 
+      background: var(--secondary-color); 
+      border-radius: 6px; 
+      transition: all 0.2s ease;
+    }
+    
+    .history-item:hover {
+      background: #f0f7ff;
+    }
+    
+    .recharge-item { border-left-color: var(--primary-color); }
+    .withdraw-item { border-left-color: var(--primary-color); }
+    .vip-item { border-left-color: var(--primary-color); }
+    
+    .processing { color: var(--warning-color); font-weight: 600; }
+    .completed { color: var(--success-color); font-weight: 600; }
+    
+    .history-container { 
+      max-height: 400px; 
+      overflow-y: auto; 
+      padding: 5px;
+    }
+    
+    .team-member { 
+      text-align: center; 
+      padding: 25px; 
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin: 10px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(30, 136, 229, 0.1);
+    }
+    
+    .team-member img { 
+      width: 120px; 
+      height: 120px; 
+      border-radius: 50%; 
+      object-fit: cover; 
+      margin-bottom: 15px; 
+      border: 3px solid var(--primary-color); 
+    }
+    
+    .social-links a { 
+      margin: 0 8px; 
+      color: var(--light-text); 
+      font-size: 20px; 
+      transition: all 0.2s ease;
+    }
+    
+    .social-links a:hover { 
+      color: var(--primary-color); 
+      transform: scale(1.1);
+    }
+    
+    .vip-benefits { 
+      margin-top: 15px; 
+      padding: 12px; 
+      background: var(--secondary-color); 
+      border-radius: 6px; 
+      border-left: 3px solid var(--primary-color);
+    }
+    
+    .form-group { margin-bottom: 18px; }
+    
+    .bank-details { 
+      background: #e3f2fd; 
+      padding: 18px; 
+      border-radius: 8px; 
+      margin-bottom: 25px; 
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .share-link { 
+      cursor: pointer; 
+      color: var(--primary-color); 
+      transition: all 0.2s ease;
+    }
+    
+    .share-link:hover { 
+      text-decoration: underline; 
+      color: var(--primary-dark);
+    }
+    
+    .loading-spinner {
+      border: 4px solid rgba(30, 136, 229, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid var(--primary-color);
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .btn-outline-primary { 
+      color: var(--primary-color); 
+      border-color: var(--primary-color); 
+      transition: all 0.2s ease;
+    }
+    
+    .btn-outline-primary:hover { 
+      background-color: var(--primary-color); 
+      color: white; 
+      transform: translateY(-2px);
+    }
+    
+    .btn-primary { 
+      background-color: var(--primary-color); 
+      border-color: var(--primary-color); 
+      transition: all 0.2s ease;
+    }
+    
+    .btn-primary:hover { 
+      background-color: var(--primary-dark); 
+      border-color: var(--primary-dark); 
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(30, 136, 229, 0.3);
+    }
+    
+    .btn-success { 
+      background-color: var(--success-color); 
+      border-color: var(--success-color); 
+      transition: all 0.2s ease;
+    }
+    
+    .btn-success:hover { 
+      background-color: #3d8b40; 
+      border-color: #3d8b40;
+      transform: translateY(-2px);
+    }
+    
+    .btn-warning { 
+      background-color: var(--warning-color); 
+      border-color: var(--warning-color); 
+      color: #212529; 
+      transition: all 0.2s ease;
+    }
+    
+    .btn-warning:hover { 
+      background-color: #e68a00; 
+      border-color: #e68a00; 
+      color: #212529;
+      transform: translateY(-2px);
+    }
+    
+    .navbar { 
+      background-color: var(--primary-color) !important; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .navbar-brand {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      padding: 8px 15px !important;
+      border-radius: 4px;
+      transition: all 0.2s ease;
+    }
+    
+    .nav-link:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+    
+    .card { 
+      border-color: var(--border-color); 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .card-header { 
+      background-color: #e3f2fd; 
+      border-bottom: 1px solid var(--border-color); 
+      font-weight: 600;
+    }
+    
+    h2, h3, h4, h5, h6 {
+      color: var(--primary-dark);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+    
+    h2 {
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 10px;
+    }
+    
+    strong {
+      color: var(--text-color);
+    }
+    
+    input.form-control, select.form-control {
+      border: 1px solid var(--border-color);
+      padding: 10px 15px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+    
+    input.form-control:focus, select.form-control:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 0 0.25rem rgba(30, 136, 229, 0.25);
+    }
+    
+    /* VIP Special Styles */
+    .vip-feature {
+      background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 15px 0;
+      box-shadow: 0 4px 15px rgba(30, 136, 229, 0.3);
+    }
+    
+    .vip-feature h4 {
+      color: white;
+      border-bottom: 1px solid rgba(255,255,255,0.3);
+      padding-bottom: 10px;
+    }
+    
+    .vip-exclusive {
+      position: relative;
+      border: 2px solid var(--primary-color);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .vip-exclusive::before {
+      content: "VIP EXCLUSIVE";
+      position: absolute;
+      top: 10px;
+      right: -25px;
+      background: var(--primary-color);
+      color: white;
+      padding: 3px 30px;
+      transform: rotate(45deg);
+      font-size: 10px;
+      font-weight: bold;
+    }
+    
+    /* Theme Selector */
+    .theme-selector {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    
+    .theme-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid white;
+      cursor: pointer;
+      margin: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .theme-btn.blue { background: #1e88e5; }
+    .theme-btn.purple { background: #9c27b0; }
+    .theme-btn.green { background: #2e7d32; }
+    .theme-btn.red { background: #d32f2f; }
+    .theme-btn.gold { background: #ffa000; }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      section {
+        margin: 15px;
+        padding: 20px;
+      }
+      
+      .team-member {
+        padding: 20px 15px;
+      }
+      
+      .vip-card {
+        padding: 15px;
+      }
+      
+      .theme-selector {
+        bottom: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+<body class="theme-blue">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="fas fa-crown me-2"></i>Sultan VIP</a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link logged-in-link" href="#dashboard"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link logged-in-link" href="#recharge"><i class="fas fa-money-bill-wave me-1"></i> Recharge</a></li>
+          <li class="nav-item"><a class="nav-link logged-in-link" href="#withdrawal"><i class="fas fa-wallet me-1"></i> Withdraw</a></li>
+          <li class="nav-item"><a class="nav-link logged-in-link" href="#products"><i class="fas fa-gem me-1"></i> VIP Levels</a></li>
+          <li class="nav-item"><a class="nav-link logged-in-link" href="#daily"><i class="fas fa-coins me-1"></i> Daily Income</a></li>
+          <li class="nav-item"><a class="nav-link logged-in-link" href="#history"><i class="fas fa-history me-1"></i> History</a></li>
+          <li class="nav-item"><a class="nav-link logged-in-link" href="#team"><i class="fas fa-users me-1"></i> Our Team</a></li>
+          <li class="nav-item"><a class="nav-link logged-in-link" href="#contact"><i class="fas fa-envelope me-1"></i> Contact</a></li>
+          <li class="nav-item"><a class="nav-link auth-link" href="#login"><i class="fas fa-sign-in-alt me-1"></i> Login</a></li>
+          <li class="nav-item"><a class="nav-link auth-link" href="#signup"><i class="fas fa-user-plus me-1"></i> Sign Up</a></li>
+          <li class="nav-item"><a class="nav-link logged-in-link" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-1"></i> Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Theme Selector -->
+  <div class="theme-selector">
+    <div class="d-flex flex-column">
+      <div class="theme-btn blue" onclick="changeTheme('blue')" title="Blue Theme"></div>
+      <div class="theme-btn purple" onclick="changeTheme('purple')" title="Purple Theme"></div>
+      <div class="theme-btn green" onclick="changeTheme('green')" title="Green Theme"></div>
+      <div class="theme-btn red" onclick="changeTheme('red')" title="Red Theme"></div>
+      <div class="theme-btn gold" onclick="changeTheme('gold')" title="Gold Theme"></div>
+    </div>
+  </div>
+
+  <!-- Authentication Sections -->
+  <section id="login" class="auth-section">
+    <h2><i class="fas fa-sign-in-alt me-2"></i>Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <input type="email" id="loginEmail" class="form-control" placeholder="Email" required>
+      </div>
+      <div class="form-group">
+        <input type="password" id="loginPassword" class="form-control" placeholder="Password" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100"><i class="fas fa-sign-in-alt me-2"></i>Login</button>
+    </form>
+  </section>
+
+  <section id="signup" class="auth-section">
+    <h2><i class="fas fa-user-plus me-2"></i>Sign Up</h2>
+    <form id="signupForm">
+      <div class="form-group">
+        <input type="text" id="signupName" class="form-control" placeholder="Full Name" required>
+      </div>
+      <div class="form-group">
+        <input type="email" id="signupEmail" class="form-control" placeholder="Email" required>
+      </div>
+      <div class="form-group">
+        <input type="password" id="signupPassword" class="form-control" placeholder="Password (min 6 chars)" required>
+      </div>
+      <div class="form-group">
+        <input type="text" id="referralCode" class="form-control" placeholder="Referral Code (optional)">
+      </div>
+      <button type="submit" class="btn btn-primary w-100"><i class="fas fa-user-plus me-2"></i>Sign Up</button>
+    </form>
+  </section>
+
+  <!-- Logged In Sections -->
+  <section id="dashboard" class="logged-in-section">
+    <h2><i class="fas fa-tachometer-alt me-2"></i>Dashboard</h2>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title"><i class="fas fa-user-circle me-2"></i>Account Summary</h5>
+        <p><strong><i class="fas fa-user me-2"></i>Name:</strong> <span id="userName"></span></p>
+        <p><strong><i class="fas fa-wallet me-2"></i>Balance:</strong> <span id="userBalance">0</span> ETB</p>
+        <p><strong><i class="fas fa-crown me-2"></i>VIP Level:</strong> <span id="userVIP">None</span></p>
+        <p><strong><i class="fas fa-user-friends me-2"></i>Referral Code:</strong> <span id="userReferralCode"></span> 
+          <span class="share-link" onclick="copyReferralCode()"><i class="fas fa-copy"></i> Copy</span></p>
+        <p><strong><i class="fas fa-link me-2"></i>Referral Link:</strong> <span id="referralLink"></span></p>
+      </div>
+    </div>
+    
+    <!-- VIP Exclusive Features -->
+    <div class="vip-feature">
+      <h4><i class="fas fa-gem me-2"></i>VIP Benefits</h4>
+      <div id="vipBenefitsContainer">
+        <p>Upgrade to VIP to unlock exclusive benefits including daily income, higher referral bonuses, and premium support.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="recharge" class="logged-in-section">
+    <h2><i class="fas fa-money-bill-wave me-2"></i>Recharge</h2>
+    <div class="bank-details">
+      <h5><i class="fas fa-university me-2"></i>Bank Details</h5>
+      <p><strong>Bank Name:</strong> Commercial Bank of Ethiopia (CBE)</p>
+      <p><strong>Account Name:</strong> Sultan Mohamed Gemechu</p>
+      <p><strong>Account Number:</strong> 1000634709006</p>
+    </div>
+    <form id="rechargeForm">
+      <div class="form-group">
+        <input type="number" id="rechargeAmount" class="form-control" placeholder="Amount (ETB)" required min="100">
+      </div>
+      <div class="form-group">
+        <input type="text" id="rechargeTxn" class="form-control" placeholder="Transaction ID" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100"><i class="fas fa-money-bill-wave me-2"></i>Submit Recharge</button>
+    </form>
+    
+    <h3 class="mt-4"><i class="fas fa-history me-2"></i>Recent Recharges</h3>
+    <div id="rechargeHistory" class="history-container">
+      <div class="loading-spinner"></div>
+    </div>
+  </section>
+
+  <section id="withdrawal" class="logged-in-section">
+    <h2><i class="fas fa-wallet me-2"></i>Withdraw</h2>
+    <form id="withdrawForm">
+      <div class="form-group">
+        <label for="withdrawAmount">Amount to Withdraw (ETB)</label>
+        <input type="number" id="withdrawAmount" class="form-control" placeholder="Enter amount" required min="500">
+      </div>
+      <div class="form-group">
+        <label for="withdrawBank">Bank Name</label>
+        <select id="withdrawBank" class="form-control" required>
+          <option value="">Select your bank</option>
+          <option value="CBE">Commercial Bank of Ethiopia (CBE)</option>
+          <option value="Awash">Awash Bank</option>
+          <option value="Dashen">Dashen Bank</option>
+          <option value="Abyssinia">Abyssinia Bank</option>
+          <option value="Nib">Nib Bank</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="withdrawAccount">Account Number</label>
+        <input type="text" id="withdrawAccount" class="form-control" placeholder="Your account number" required>
+      </div>
+      <div class="form-group">
+        <label for="withdrawName">Account Holder Name</label>
+        <input type="text" id="withdrawName" class="form-control" placeholder="Name as in bank account" required>
+      </div>
+      <button type="submit" class="btn btn-primary w-100"><i class="fas fa-paper-plane me-2"></i>Request Withdrawal</button>
+    </form>
+    
+    <h3 class="mt-4"><i class="fas fa-history me-2"></i>Withdrawal History</h3>
+    <div id="withdrawHistory" class="history-container">
+      <div class="loading-spinner"></div>
+    </div>
+  </section>
+
+  <section id="products" class="logged-in-section">
+    <h2><i class="fas fa-gem me-2"></i>VIP Levels</h2>
+    <div class="row" id="productList"></div>
+  </section>
+
+  <section id="daily" class="logged-in-section">
+    <h2><i class="fas fa-coins me-2"></i>Daily Claim</h2>
+    <div class="card vip-exclusive">
+      <div class="card-body text-center">
+        <h5 class="card-title">Claim Your Daily Income</h5>
+        <p class="card-text">Click the button below to claim your daily income based on your VIP level</p>
+        <button onclick="claimDaily()" class="btn btn-primary btn-lg"><i class="fas fa-hand-holding-usd me-2"></i>Claim Income</button>
+      </div>
+    </div>
+    
+    <div class="mt-4">
+      <h4><i class="fas fa-info-circle me-2"></i>How Daily Income Works</h4>
+      <p>As a VIP member, you earn daily income based on your VIP level. Higher VIP levels earn more:</p>
+      <ul>
+        <li>VIP 1: 20 ETB daily</li>
+        <li>VIP 5: 400 ETB daily</li>
+        <li>VIP 10: 3,200 ETB daily</li>
+      </ul>
+      <p>You can claim your income once every 24 hours. Upgrade your VIP level to increase your daily earnings!</p>
+    </div>
+  </section>
+
+  <section id="history" class="logged-in-section">
+    <h2><i class="fas fa-history me-2"></i>Transaction History</h2>
+    <div class="card">
+      <div class="card-body">
+        <div id="allHistory" class="history-container">
+          <div class="loading-spinner"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" class="logged-in-section">
+    <h2><i class="fas fa-users me-2"></i>Our Team</h2>
+    <div class="row text-center">
+      <div class="col-md-4 team-member">
+        <img src="https://via.placeholder.com/150" alt="Team Member" class="img-fluid">
+        <h4>Sultan Mohamed</h4>
+        <p>Founder & CEO</p>
+        <div class="social-links">
+          <a href="https://t.me/HNA0993" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+          <a href="https://wa.me/251993204587" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="mailto:sultan@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <span class="share-link" onclick="copyToClipboard('https://t.me/'HNA0993')" title="Copy Telegram Link"><i class="fas fa-copy"></i></span>
+        </div>
+      </div>
+      <div class="col-md-4 team-member">
+        <img src="https://via.placeholder.com/150" alt="Team Member" class="img-fluid">
+        <h4>Support Team</h4>
+        <p>Customer Support</p>
+        <div class="social-links">
+          <a href="https://t.me/support" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+          <a href="mailto:support@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <span class="share-link" onclick="copyToClipboard('https://t.me/support')" title="Copy Telegram Link"><i class="fas fa-copy"></i></span>
+        </div>
+      </div>
+      <div class="col-md-4 team-member">
+        <img src="https://via.placeholder.com/150" alt="Team Member" class="img-fluid">
+        <h4>Technical Team</h4>
+        <p>Technical Support</p>
+        <div class="social-links">
+          <a href="@HNA0993" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
+          <a href="mailto:tech@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <span class="share-link" onclick="copyToClipboard('https://t.me/technical')" title="Copy Telegram Link"><i class="fas fa-copy"></i></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="logged-in-section">
+    <h2><i class="fas fa-envelope me-2"></i>Contact Us</h2>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Get in Touch</h5>
+        <div class="mb-3">
+          <a href="https://t.me/HNA0993" target="_blank" class="btn btn-outline-primary me-2">
+            <i class="fab fa-telegram"></i> Telegram
+          </a>
+          <a href="https://wa.me/251993204587" target="_blank" class="btn btn-outline-primary me-2">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <a href="mailto:sultan@example.com" class="btn btn-outline-primary">
+            <i class="fas fa-envelope"></i> Email
+          </a>
+        </div>
+        <p class="mb-2"><i class="fas fa-phone"></i> <strong>Phone:</strong> +251 99 320 4587</p>
+        <p><i class="fas fa-users"></i> <strong>Telegram Group:</strong> <a href="https://t.me/+groupLink" target="_blank">Join our community</a></p>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDFjoQLY4o2d-TsTC9cARPNeVMF86PolH8",
+      authDomain: "sultanwebapp-2c251.firebaseapp.com",
+      databaseURL: "https://sultanwebapp-2c251-default-rtdb.firebaseio.com",
+      projectId: "sultanwebapp-2c251",
+      storageBucket: "sultanwebapp-2c251.appspot.com",
+      messagingSenderId: "566482579045",
+      appId: "1:566482579045:web:4f634215449b95de82208c"
+    };
+    
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.database();
+
+    // DOM elements
+    const userBalance = document.getElementById("userBalance");
+    const userVIP = document.getElementById("userVIP");
+    const userName = document.getElementById("userName");
+    const userReferralCode = document.getElementById("userReferralCode");
+    const referralLink = document.getElementById("referralLink");
+    const vipBenefitsContainer = document.getElementById("vipBenefitsContainer");
+    
+    // VIP levels configuration
+    const vipLevels = [
+      { level: 1, price: 200, daily: 20, benefits: ["Basic rewards", "Email support", "Access to VIP 1 features"] },
+      { level: 2, price: 500, daily: 55, benefits: ["Faster processing", "Priority support", "Higher referral bonuses"] },
+      { level: 3, price: 1000, daily: 120, benefits: ["Exclusive offers", "Dedicated account manager", "Weekly tips"] },
+      { level: 4, price: 2000, daily: 250, benefits: ["VIP events", "Premium support", "Monthly webinars"] },
+      { level: 5, price: 3000, daily: 400, benefits: ["Personal assistant", "24/7 support", "Exclusive content"] },
+      { level: 6, price: 5000, daily: 700, benefits: ["Monthly gifts", "Priority withdrawals", "VIP community"] },
+      { level: 7, price: 7000, daily: 1000, benefits: ["Luxury rewards", "Quarterly bonuses", "1-on-1 coaching"] },
+      { level: 8, price: 10000, daily: 1500, benefits: ["Platinum status", "Annual retreat", "Investment advice"] },
+      { level: 9, price: 15000, daily: 2300, benefits: ["Diamond benefits", "Personal concierge", "Business mentoring"] },
+      { level: 10, price: 20000, daily: 3200, benefits: ["Executive level", "Private jet access", "Global network"] },
+      { level: 11, price: 30000, daily: 4800, benefits: ["Elite status", "Worldwide privileges", "VIP retreats"] },
+      { level: 12, price: 50000, daily: 8000, benefits: ["Royal treatment", "Global recognition", "Lifetime benefits"] }
+    ];
+
+    // Display VIP levels
+    const productList = document.getElementById("productList");
+    vipLevels.forEach(vip => {
+      const div = document.createElement("div");
+      div.className = "col-md-6 col-lg-4";
+      div.innerHTML = `
+        <div class="vip-card">
+          ${vip.level <= 3 ? '' : '<div class="vip-badge">PREMIUM</div>'}
+          <h4 class="text-center">VIP ${vip.level}</h4>
+          <p class="text-center"><strong>${vip.price.toLocaleString()} ETB</strong></p>
+          <hr>
+          <p class="text-center"><strong>Daily: ${vip.daily.toLocaleString()} ETB</strong></p>
+          <div class="vip-benefits">
+            <h6>Benefits:</h6>
+            <ul>
+              ${vip.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+            </ul>
+          </div>
+          <button class="btn btn-primary w-100 mt-2" onclick="buyVIP(${vip.level}, ${vip.price})">
+            <i class="fas fa-arrow-up me-2"></i>Upgrade Now
+          </button>
+        </div>
+      `;
+      productList.appendChild(div);
+    });
+
+    // Theme changer function
+    function changeTheme(theme) {
+      document.body.className = 'theme-' + theme;
+      localStorage.setItem('selectedTheme', theme);
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('selectedTheme') || 'blue';
+    changeTheme(savedTheme);
+
+    // UI Functions
+    function toggleUI(isLoggedIn) {
+      const authSections = document.querySelectorAll('.auth-section');
+      const loggedInSections = document.querySelectorAll('.logged-in-section');
+      const authLinks = document.querySelectorAll('.auth-link');
+      const loggedInLinks = document.querySelectorAll('.logged-in-link');
+
+      if (isLoggedIn) {
+        authSections.forEach(el => el.style.display = 'none');
+        loggedInSections.forEach(el => el.style.display = 'block');
+        authLinks.forEach(el => el.style.display = 'none');
+        loggedInLinks.forEach(el => el.style.display = 'block');
+        document.getElementById('logoutBtn').style.display = 'block';
+      } else {
+        authSections.forEach(el => el.style.display = 'block');
+        loggedInSections.forEach(el => el.style.display = 'none');
+        authLinks.forEach(el => el.style.display = 'block');
+        loggedInLinks.forEach(el => el.style.display = 'none');
+        document.getElementById('logoutBtn').style.display = 'none';
+        // Show login section by default
+        document.getElementById('login').style.display = 'block';
+        document.getElementById('signup').style.display = 'none';
+      }
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Copied to clipboard: " + text);
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+
+    function copyReferralCode() {
+      const code = document.getElementById("userReferralCode").textContent;
+      copyToClipboard(code);
+    }
+
+    // User Data Functions
+    function loadUserData(uid) {
+      db.ref("users/" + uid).on("value", snap => {
+        const data = snap.val();
+        if (data) {
+          userName.innerText = data.name;
+          userBalance.innerText = data.balance || 0;
+          userVIP.innerText = data.vip ? "VIP " + data.vip : "None";
+          userReferralCode.innerText = data.referralCode || "N/A";
+          referralLink.innerText = window.location.href.split('#')[0] + '?ref=' + (data.referralCode || '');
+          
+          // Update VIP benefits display
+          updateVipBenefits(data.vip || 0);
+          
+          // Load user's transaction history
+          loadRechargeHistory(uid);
+          loadWithdrawHistory(uid);
+          loadAllHistory(uid);
+        }
+      });
+    }
+
+    function updateVipBenefits(vipLevel) {
+      if (vipLevel > 0) {
+        const vip = vipLevels.find(v => v.level === vipLevel);
+        if (vip) {
+          vipBenefitsContainer.innerHTML = `
+            <p>You are currently <strong>VIP ${vipLevel}</strong> with these benefits:</p>
+            <ul>
+              ${vip.benefits.map(benefit => `<li><i class="fas fa-check-circle me-2"></i>${benefit}</li>`).join('')}
+              <li><i class="fas fa-check-circle me-2"></i>Daily income: ${vip.daily} ETB</li>
+            </ul>
+            <p class="mt-2">Upgrade to higher VIP levels for even more benefits!</p>
+          `;
+        }
+      } else {
+        vipBenefitsContainer.innerHTML = `
+          <p>You are not currently a VIP member. Upgrade to unlock these benefits:</p>
+          <ul>
+            <li><i class="fas fa-check-circle me-2"></i>Daily income</li>
+            <li><i class="fas fa-check-circle me-2"></i>Higher referral bonuses</li>
+            <li><i class="fas fa-check-circle me-2"></i>Priority support</li>
+            <li><i class="fas fa-check-circle me-2"></i>Exclusive content</li>
+          </ul>
+          <p class="mt-2">Start with VIP 1 for just 200 ETB!</p>
+        `;
+      }
+    }
+
+    // Transaction Functions
+    function buyVIP(level, price) {
+      const uid = localStorage.getItem("uid");
+      const ref = db.ref("users/" + uid);
+      ref.once("value").then(snap => {
+        const data = snap.val();
+        if (confirm(`Are you sure you want to upgrade to VIP ${level} for ${price.toLocaleString()} ETB?`)) {
+          if (data.balance >= price) {
+            ref.update({
+              balance: parseInt(data.balance) - parseInt(price),
+              vip: level
+            });
+            
+            // Record VIP purchase in history
+            db.ref("vipPurchases/" + uid).push({
+              level: level,
+              price: price,
+              time: new Date().toISOString()
+            });
+            
+            alert(`Congratulations! You are now VIP ${level}`);
+            updateVipBenefits(level);
+            loadAllHistory(uid); // Refresh history
+          } else {
+            alert("Not enough balance! Please recharge first.");
+          }
+        }
+      });
+    }
+
+    function loadRechargeHistory(uid) {
+      const rechargeHistory = document.getElementById("rechargeHistory");
+      rechargeHistory.innerHTML = '<div class="loading-spinner"></div>';
+      
+      db.ref("recharges/" + uid).orderByChild("time").limitToLast(5).on("value", snap => {
+        const data = snap.val();
+        if (data) {
+          let html = '';
+          Object.keys(data).forEach(key => {
+            const item = data[key];
+            html += `
+              <div class="history-item recharge-item">
+                <p><strong>Amount:</strong> ${item.amount} ETB</p>
+                <p><strong>Transaction ID:</strong> ${item.txn}</p>
+                <p><strong>Status:</strong> <span class="${item.status || 'completed'}">${item.status || 'completed'}</span></p>
+                <p><strong>Date:</strong> ${new Date(item.time).toLocaleString()}</p>
+              </div>
+            `;
+          });
+          rechargeHistory.innerHTML = html || '<p>No recharge history found</p>';
+        } else {
+          rechargeHistory.innerHTML = '<p>No recharge history found</p>';
+        }
+      }, error => {
+        console.error("Error loading recharge history:", error);
+        rechargeHistory.innerHTML = '<p>Error loading recharge history</p>';
+      });
+    }
+
+    function loadWithdrawHistory(uid) {
+      const withdrawHistory = document.getElementById("withdrawHistory");
+      withdrawHistory.innerHTML = '<div class="loading-spinner"></div>';
+      
+      db.ref("withdrawals/" + uid).orderByChild("time").limitToLast(5).on("value", snap => {
+        const data = snap.val();
+        if (data) {
+          let html = '';
+          Object.keys(data).forEach(key => {
+            const item = data[key];
+            const status = item.status || "processing";
+            html += `
+              <div class="history-item withdraw-item">
+                <p><strong>Amount:</strong> ${item.amount} ETB</p>
+                <p><strong>Bank:</strong> ${item.bank || 'Not specified'}</p>
+                <p><strong>Account:</strong> ${item.accountNumber || 'Not specified'}</p>
+                <p><strong>Status:</strong> <span class="${status}">${status}</span></p>
+                <p><strong>Date:</strong> ${new Date(item.time).toLocaleString()}</p>
+              </div>
+            `;
+          });
+          withdrawHistory.innerHTML = html || '<p>No withdrawal history found</p>';
+        } else {
+          withdrawHistory.innerHTML = '<p>No withdrawal history found</p>';
+        }
+      }, error => {
+        console.error("Error loading withdrawal history:", error);
+        withdrawHistory.innerHTML = '<p>Error loading withdrawal history</p>';
+      });
+    }
+
+    function loadAllHistory(uid) {
+      const allHistory = document.getElementById("allHistory");
+      allHistory.innerHTML = '<div class="loading-spinner"></div>';
+      
+      Promise.all([
+        db.ref("recharges/" + uid).orderByChild("time").limitToLast(20).once("value"),
+        db.ref("withdrawals/" + uid).orderByChild("time").limitToLast(20).once("value"),
+        db.ref("vipPurchases/" + uid).orderByChild("time").limitToLast(20).once("value"),
+        db.ref("dailyClaims/" + uid).orderByChild("time").limitToLast(20).once("value")
+      ]).then(([recharges, withdrawals, vipPurchases, dailyClaims]) => {
+        let allTransactions = [];
+        
+        // Process recharges
+        const rechargeData = recharges.val() || {};
+        Object.keys(rechargeData).forEach(key => {
+          const item = rechargeData[key];
+          allTransactions.push({
+            type: "recharge",
+            amount: item.amount,
+            txn: item.txn,
+            time: item.time,
+            status: item.status || "completed",
+            sortTime: new Date(item.time).getTime()
+          });
+        });
+        
+        // Process withdrawals
+        const withdrawData = withdrawals.val() || {};
+        Object.keys(withdrawData).forEach(key => {
+          const item = withdrawData[key];
+          allTransactions.push({
+            type: "withdraw",
+            amount: item.amount,
+            bank: item.bank,
+            accountNumber: item.accountNumber,
+            status: item.status || "processing",
+            time: item.time,
+            sortTime: new Date(item.time).getTime()
+          });
+        });
+        
+        // Process VIP purchases
+        const vipData = vipPurchases.val() || {};
+        Object.keys(vipData).forEach(key => {
+          const item = vipData[key];
+          allTransactions.push({
+            type: "vip",
+            level: item.level,
+            price: item.price,
+            time: item.time,
+            sortTime: new Date(item.time).getTime()
+          });
+        });
+        
+        // Process daily claims
+        const dailyData = dailyClaims.val() || {};
+        Object.keys(dailyData).forEach(key => {
+          const item = dailyData[key];
+          allTransactions.push({
+            type: "daily",
+            amount: item.amount,
+            vipLevel: item.vipLevel,
+            time: item.time,
+            sortTime: new Date(item.time).getTime()
+          });
+        });
+        
+        // Sort all transactions by time (newest first)
+        allTransactions.sort((a, b) => b.sortTime - a.sortTime);
+        
+        // Display the transactions
+        if (allTransactions.length > 0) {
+          let html = '';
+          allTransactions.forEach(tx => {
+            if (tx.type === "recharge") {
+              html += `
+                <div class="history-item recharge-item">
+                  <p><strong>Recharge:</strong> ${tx.amount} ETB</p>
+                  <p><strong>Transaction ID:</strong> ${tx.txn}</p>
+                  <p><strong>Status:</strong> <span class="${tx.status}">${tx.status}</span></p>
+                  <p><strong>Date:</strong> ${new Date(tx.time).toLocaleString()}</p>
+                </div>
+              `;
+            } else if (tx.type === "withdraw") {
+              html += `
+                <div class="history-item withdraw-item">
+                  <p><strong>Withdrawal:</strong> ${tx.amount} ETB</p>
+                  <p><strong>Bank:</strong> ${tx.bank || 'Not specified'}</p>
+                  <p><strong>Account:</strong> ${tx.accountNumber || 'Not specified'}</p>
+                  <p><strong>Status:</strong> <span class="${tx.status}">${tx.status}</span></p>
+                  <p><strong>Date:</strong> ${new Date(tx.time).toLocaleString()}</p>
+                </div>
+              `;
+            } else if (tx.type === "vip") {
+              html += `
+                <div class="history-item vip-item">
+                  <p><strong>VIP Purchase:</strong> Level ${tx.level}</p>
+                  <p><strong>Amount:</strong> ${tx.price} ETB</p>
+                  <p><strong>Date:</strong> ${new Date(tx.time).toLocaleString()}</p>
+                </div>
+              `;
+            } else if (tx.type === "daily") {
+              html += `
+                <div class="history-item">
+                  <p><strong>Daily Income:</strong> ${tx.amount} ETB</p>
+                  <p><strong>VIP Level:</strong> ${tx.vipLevel}</p>
+                  <p><strong>Date:</strong> ${new Date(tx.time).toLocaleString()}</p>
+                </div>
+              `;
+            }
+          });
+          allHistory.innerHTML = html;
+        } else {
+          allHistory.innerHTML = '<p>No transaction history found</p>';
+        }
+      }).catch(error => {
+        console.error("Error loading transaction history:", error);
+        allHistory.innerHTML = '<p>Error loading transaction history</p>';
+      });
+    }
+
+    // Form Handlers
+    document.getElementById("rechargeForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const amount = parseInt(document.getElementById("rechargeAmount").value);
+      const txn = document.getElementById("rechargeTxn").value;
+      const uid = localStorage.getItem("uid");
+      const ref = db.ref("users/" + uid);
+      
+      if (amount < 100) {
+        alert("Minimum recharge amount is 100 ETB");
+        return;
+      }
+      
+      ref.once("value").then(snap => {
+        const data = snap.val();
+        ref.update({
+          balance: parseInt(data.balance || 0) + parseInt(amount)
+        });
+        
+        // Record recharge with additional details
+        db.ref("recharges/" + uid).push({
+          amount: amount,
+          txn: txn,
+          time: new Date().toISOString(),
+          status: "completed"
+        });
+        
+        alert("Recharge successful! Your balance has been updated.");
+        document.getElementById("rechargeForm").reset();
+        loadAllHistory(uid); // Refresh history
+      });
+    });
+
+    document.getElementById("withdrawForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const amount = parseInt(document.getElementById("withdrawAmount").value);
+      const bank = document.getElementById("withdrawBank").value;
+      const accountNumber = document.getElementById("withdrawAccount").value;
+      const accountName = document.getElementById("withdrawName").value;
+      const uid = localStorage.getItem("uid");
+      const ref = db.ref("users/" + uid);
+      
+      if (amount < 500) {
+        alert("Minimum withdrawal amount is 500 ETB");
+        return;
+      }
+      
+      ref.once("value").then(snap => {
+        const data = snap.val();
+        if (data.balance >= amount) {
+          ref.update({
+            balance: parseInt(data.balance) - parseInt(amount)
+          });
+          
+          // Record withdrawal with processing status
+          db.ref("withdrawals/" + uid).push({
+            amount: amount,
+            bank: bank,
+            accountNumber: accountNumber,
+            accountName: accountName,
+            time: new Date().toLocaleString(),
+            status: "processing"
+          });
+          
+          alert("Withdrawal requested successfully!\nStatus: Processing\nWe will process your request within 24 hours.");
+          document.getElementById("withdrawForm").reset();
+          loadAllHistory(uid); // Refresh history
+        } else {
+          alert("Insufficient balance! Please recharge first.");
+        }
+      });
+    });
+
+    function claimDaily() {
+      const uid = localStorage.getItem("uid");
+      const ref = db.ref("users/" + uid);
+      const today = new Date().toISOString().split("T")[0];
+      
+      ref.once("value").then(snap => {
+        const data = snap.val();
+        
+        // Check if already claimed today
+        if (data.lastClaim === today) {
+          alert("You have already claimed your daily income today!");
+          return;
+        }
+        
+        const vip = vipLevels.find(v => v.level === data.vip);
+        if (!vip) {
+          alert("No VIP level found! Please upgrade your VIP level to claim daily income.");
+          return;
+        }
+        
+        const dailyAmount = vip.daily;
+        ref.update({
+          balance: parseInt(data.balance || 0) + parseInt(dailyAmount),
+          lastClaim: today
+        });
+        
+        // Record daily claim
+        db.ref("dailyClaims/" + uid).push({
+          amount: dailyAmount,
+          time: new Date().toLocaleString(),
+          vipLevel: vip.level
+        });
+        
+        alert(`Success! ${dailyAmount} ETB has been added to your balance as daily income.`);
+        loadAllHistory(uid); // Refresh history
+      });
+    }
+
+    // Authentication Handlers
+    document.getElementById("loginForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+      
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          localStorage.setItem("uid", user.uid);
+          loadUserData(user.uid);
+          toggleUI(true);
+          alert("Login successful! Welcome back.");
+        })
+        .catch((error) => {
+          alert("Login error: " + error.message);
+        });
+    });
+
+    document.getElementById("signupForm").addEventListener("submit", e => {
+      e.preventDefault();
+      const name = document.getElementById("signupName").value;
+      const email = document.getElementById("signupEmail").value;
+      const password = document.getElementById("signupPassword").value;
+      const referralCode = document.getElementById("referralCode").value;
+      
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters long");
+        return;
+      }
+      
+      auth.createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          // Generate referral code (first 4 letters of name + random 4 digits)
+          const refCode = (name.substring(0,4) + Math.floor(1000 + Math.random() * 9000)).toUpperCase();
+          
+          // Save user data to database
+          db.ref("users/" + user.uid).set({
+            name: name,
+            balance: 0,
+            vip: 0,
+            lastClaim: "",
+            referralCode: refCode,
+            referredBy: referralCode || null
+          });
+          
+          localStorage.setItem("uid", user.uid);
+          loadUserData(user.uid);
+          toggleUI(true);
+          document.getElementById("signupForm").reset();
+          alert("Registration successful! Welcome to our platform.\nYour referral code: " + refCode);
+        })
+        .catch((error) => {
+          alert("Signup error: " + error.message);
+        });
+    });
+
+    document.getElementById("logoutBtn").addEventListener("click", e => {
+      e.preventDefault();
+      if (confirm("Are you sure you want to logout?")) {
+        auth.signOut().then(() => {
+          localStorage.removeItem("uid");
+          toggleUI(false);
+          alert("You have been logged out successfully.");
+        }).catch((error) => {
+          alert("Logout error: " + error.message);
+        });
+      }
+    });
+
+    // Navigation Handlers
+    document.querySelectorAll('.auth-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.getAttribute('href') === '#login') {
+          document.getElementById('login').style.display = 'block';
+          document.getElementById('signup').style.display = 'none';
+        } else if (this.getAttribute('href') === '#signup') {
+          document.getElementById('login').style.display = 'none';
+          document.getElementById('signup').style.display = 'block';
+        }
+      });
+    });
+
+    // Check for referral code in URL
+    function checkReferral() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const refCode = urlParams.get('ref');
+      if (refCode) {
+        document.getElementById('referralCode').value = refCode;
+      }
+    }
+
+    // Initialize App
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        localStorage.setItem("uid", user.uid);
+        loadUserData(user.uid);
+        toggleUI(true);
+      } else {
+        toggleUI(false);
+        checkReferral();
+      }
+    });
+
+    toggleUI(false);
+  </script>
+</body>
+</html>
